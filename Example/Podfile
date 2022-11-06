@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '13.0'
+
+target 'SSODoters_Example' do
+  pod 'SSODoters', :path => '../'
+
+  target 'SSODoters_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
