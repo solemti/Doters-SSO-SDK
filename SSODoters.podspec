@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'SSODoters'
   s.version          = '1.1.0'
   s.summary          = 'Single Sign On Doters.'
+  s.swift_versions          = '5.0'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -22,7 +23,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/solemti/Doters-SSO-SDK'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '82123683' => 'alejandrosoto@solemti.mx' }
+  s.author           = { '82123683' => 'alejandrosoto@solemti.com' }
   s.source           = { :git => 'https://github.com/solemti/Doters-SSO-SDK.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '13.0'

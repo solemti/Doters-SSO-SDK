@@ -316,6 +316,13 @@ public class AuthSSODoters : NSObject{
                 if let title = json["title"] as? String {
                     userInfo.title=title
                 }
+                if let error_description = json["error_description"] as? String {
+                    userInfo.errorDescription=error_description
+                }
+                
+                if let error = json["error"] as? String {
+                    userInfo.error=error
+                }
             }
         } catch let error as NSError {
             print("Failed to load: \(error.localizedDescription)")
