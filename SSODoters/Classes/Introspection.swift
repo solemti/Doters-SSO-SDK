@@ -11,24 +11,24 @@ public class Introspection: NSObject{
     
     var active:Bool
     var sub:SubIntrospection
-    var client_id:String
+    var clientId:String
     var exp:Int
     var iat:Int
     var iss:String
     var scope:String
-    var token_type:String
+    var tokenType:String
     var error:String
     var errorDescription:String
     
     public override init(){
         active = false
         sub = SubIntrospection()
-        client_id = ""
+        clientId = ""
         exp = 0
         iat = 0
         iss = ""
         scope = ""
-        token_type = ""
+        tokenType = ""
         error = ""
         errorDescription = ""
     }
@@ -37,8 +37,8 @@ public class Introspection: NSObject{
         return active
     }
     
-    public func getClient_id() -> String{
-        return client_id
+    public func getClientId() -> String{
+        return clientId
     }
     
     public func getExp() -> Int{
@@ -61,8 +61,8 @@ public class Introspection: NSObject{
         return scope
     }
     
-    public func getToken_type() -> String{
-        return token_type
+    public func getTokenType() -> String{
+        return tokenType
     }
     
     public func getError() -> String{

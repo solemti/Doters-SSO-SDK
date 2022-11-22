@@ -79,7 +79,7 @@ public class AuthSSODoters : NSObject{
         
         let authUrlString = "\(APIurl)/logout?post_logout_redirect_uri=\(scheme)://logout&client_id=\(clientId)";
         guard let urlAuth = URL(string: authUrlString) else { return }
-
+       
         let session = ASWebAuthenticationSession(
             url: urlAuth,
             callbackURLScheme: scheme,
@@ -95,14 +95,14 @@ public class AuthSSODoters : NSObject{
         session.start()
     }
     
-    public func RefreshToken(token:String, completion: @escaping (LoginData, Error?) -> ()) {
+    public func refreshToken(token:String, completion: @escaping (LoginData, Error?) -> ()) {
         if(token.isEmpty){
             loginData.errorDescription=" missing required parameter 'refresh_token' "
             loginData.error="invalid_request"
             completion(self.loginData,nil)
             return
         }
-        let requestHeaders: [String:String] = ["Authorization": "Basic \(Authorization())",
+        let requestHeaders: [String:String] = ["Authorization": "Basic \(authorization())",
             "Content-Type": "application/x-www-form-urlencoded"]
         var requestBody=URLComponents()
         
@@ -121,7 +121,7 @@ public class AuthSSODoters : NSObject{
         
     }
     
-    public func TokenIntrospection(access_token:String, completion: @escaping (Introspection, Error?) -> ()) {
+    public func tokenIntrospection(access_token:String, completion: @escaping (Introspection, Error?) -> ()) {
         
         if(access_token.isEmpty){
             introspection.errorDescription=" missing required parameter 'access_token' "
@@ -129,7 +129,7 @@ public class AuthSSODoters : NSObject{
             completion(self.introspection,nil)
             return
         }
-        let requestHeaders: [String:String] = ["Authorization": "Basic \(Authorization())",
+        let requestHeaders: [String:String] = ["Authorization": "Basic \(authorization())",
                                                "Content-Type": "application/x-www-form-urlencoded"]
         var requestBody=URLComponents()
         
@@ -149,7 +149,7 @@ public class AuthSSODoters : NSObject{
         
     }
     
-    public func UserInfo(access_token:String, completion: @escaping (UserInfoData, Error?) -> ()) {
+    public func userInfo(access_token:String, completion: @escaping (UserInfoData, Error?) -> ()) {
         if(access_token.isEmpty){
             userInfo.errorDescription=" missing required parameter 'access_token' "
             userInfo.error="invalid_request"
@@ -170,7 +170,7 @@ public class AuthSSODoters : NSObject{
         
     }
     
-     func  Authorization() -> String{
+     func  authorization() -> String{
         let loginString = String(format: "%@:%@", self.clientId, self.clientSecret)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
@@ -180,15 +180,15 @@ public class AuthSSODoters : NSObject{
     public func getLogin(data:String){
         
         if let access_token = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "access_token" }).first {
-            loginData.access_token = access_token.value!
+            loginData.accessToken = access_token.value!
         }
         
         if let expires_in = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "expires_in" }).first {
-            loginData.expires_in =  Int(expires_in.value!) ?? 0
+            loginData.expiresIn =  Int(expires_in.value!) ?? 0
         }
         
         if let id_token = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "id_token" }).first {
-            loginData.id_token = id_token.value!
+            loginData.idToken = id_token.value!
         }
         
         if let scope = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "scope" }).first {
@@ -196,7 +196,7 @@ public class AuthSSODoters : NSObject{
         }
         
         if let token_type = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "token_type" }).first {
-            loginData.token_type = token_type.value!
+            loginData.tokenType = token_type.value!
         }
         
         if let state = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "state" }).first {
@@ -204,7 +204,7 @@ public class AuthSSODoters : NSObject{
         }
         
         if let refresh_token = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "refresh_token" }).first {
-            loginData.refresh_token = refresh_token.value!
+            loginData.refreshToken = refresh_token.value!
         }
 
     }
@@ -213,24 +213,24 @@ public class AuthSSODoters : NSObject{
         do {
             if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
                 
-                if let access_token = json["access_token"] as? String {
-                    loginData.access_token=access_token
+                if let accessToken = json["access_token"] as? String {
+                    loginData.accessToken=accessToken
                 }
                 
-                if let expires_in = json["expires_in"] as? Int {
-                    loginData.expires_in=expires_in
+                if let expiresIn = json["expires_in"] as? Int {
+                    loginData.expiresIn=expiresIn
                 }
                 
                 if let scope = json["scope"] as? String {
                     loginData.scope=scope
                 }
                 
-                if let token_type = json["token_type"] as? String {
-                    loginData.token_type=token_type
+                if let tokenType = json["token_type"] as? String {
+                    loginData.tokenType=tokenType
                 }
                 
                 if let refresh_token = json["refresh_token"] as? String {
-                    loginData.refresh_token=refresh_token
+                    loginData.refreshToken=refresh_token
                 }
                 
                 if let error_description = json["error_description"] as? String {
@@ -254,7 +254,7 @@ public class AuthSSODoters : NSObject{
                 }
                 
                 if let client_id = json["client_id"] as? String {
-                    introspection.client_id=client_id
+                    introspection.clientId=clientId
                 }
                 
                 if let exp = json["exp"] as? Int {
@@ -274,7 +274,7 @@ public class AuthSSODoters : NSObject{
                 }
                 
                 if let token_type = json["token_type"] as? String {
-                    introspection.token_type=token_type
+                    introspection.tokenType=token_type
                 }
                 
                 if let sub = json["sub"] as? String {
@@ -302,7 +302,7 @@ public class AuthSSODoters : NSObject{
         do {
             if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
                 if let sub = json["sub"] as? String {
-                    userInfo.sub=sub
+                    userInfo.customerId=sub
                 }
                 if let email = json["email"] as? String {
                     userInfo.email=email

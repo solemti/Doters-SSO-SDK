@@ -2,6 +2,7 @@
   "name": "SSODoters",
   "version": "1.1.0",
   "summary": "Single Sign On Doters.",
+  "swift_versions": "5.0",
   "description": "Doters Single Sign On SDK.",
   "homepage": "https://github.com/solemti/Doters-SSO-SDK",
   "license": {
@@ -9,7 +10,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "82123683": "alejandrosoto@solemti.mx"
+    "Alejandro Soto": "alejandrosoto@solemti.com"
   },
   "source": {
     "git": "https://github.com/solemti/Doters-SSO-SDK.git",
@@ -18,5 +19,6 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "SSODoters/Classes/**/*"
+  "source_files": "SSODoters/Classes/**/*",
+  "swift_version": "5.0"
 }

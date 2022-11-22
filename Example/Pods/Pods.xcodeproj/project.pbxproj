@@ -460,6 +460,39 @@
 			};
 			name = Debug;
 		};
+		2217B6541F8210DD011AC3962AEC4091 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 669C6A5991179F905B1B78E141813033 /* SSODoters.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SSODoters/SSODoters-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SSODoters/SSODoters-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SSODoters/SSODoters.modulemap";
+				PRODUCT_MODULE_NAME = SSODoters;
+				PRODUCT_NAME = SSODoters;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		76D4076073A299A8D93582D2C506C7F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2BF1CF5A571688D6D8ADFCD0D9379DD6 /* Pods-SSODoters_Tests.release.xcconfig */;
@@ -658,6 +691,38 @@
 			};
 			name = Release;
 		};
+		C086CE3491977E6C1280E1D339849162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 306DF6B81F023C280EB32E9AED542930 /* SSODoters.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SSODoters/SSODoters-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SSODoters/SSODoters-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SSODoters/SSODoters.modulemap";
+				PRODUCT_MODULE_NAME = SSODoters;
+				PRODUCT_NAME = SSODoters;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		D8D36BEA149BA5647E198E0788C3C0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AA8ACFB410B2CC90A8773CB534EAE2A /* Pods-SSODoters_Example.debug.xcconfig */;
@@ -692,71 +757,6 @@
 			};
 			name = Debug;
 		};
-		F748048CEAB014430652CCE838024ABB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 669C6A5991179F905B1B78E141813033 /* SSODoters.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SSODoters/SSODoters-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SSODoters/SSODoters-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SSODoters/SSODoters.modulemap";
-				PRODUCT_MODULE_NAME = SSODoters;
-				PRODUCT_NAME = SSODoters;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		FC9457A885D19475D7DC49831B18E188 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306DF6B81F023C280EB32E9AED542930 /* SSODoters.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SSODoters/SSODoters-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SSODoters/SSODoters-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SSODoters/SSODoters.modulemap";
-				PRODUCT_MODULE_NAME = SSODoters;
-				PRODUCT_NAME = SSODoters;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -772,8 +772,8 @@
 		3645374932C618D49A8F883D79A49A8D /* Build configuration list for PBXNativeTarget "SSODoters" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FC9457A885D19475D7DC49831B18E188 /* Debug */,
-				F748048CEAB014430652CCE838024ABB /* Release */,
+				C086CE3491977E6C1280E1D339849162 /* Debug */,
+				2217B6541F8210DD011AC3962AEC4091 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

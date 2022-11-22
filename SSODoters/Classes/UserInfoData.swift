@@ -9,7 +9,7 @@ import Foundation
 
 public class UserInfoData: NSObject{
     
-    var sub:String
+    var customerId:String
     var email:String
     var first:String
     var last:String
@@ -18,7 +18,7 @@ public class UserInfoData: NSObject{
     var errorDescription:String
     
     public override init(){
-        sub = ""
+        customerId = ""
         first = ""
         last = ""
         title = ""
@@ -43,8 +43,8 @@ public class UserInfoData: NSObject{
         return email
     }
     
-    public func getSub() -> String{
-        return sub
+    public func getCustomerId() -> String{
+        return customerId
     }
     
     public func getError() -> String{

@@ -9,42 +9,54 @@ import Foundation
 
 public class LoginData: NSObject{
     
-    var access_token:String
-    var expires_in:Int
-    var id_token:String
-    var refresh_token:String
+    var accessToken:String
+    var expiresIn:Int
+    var idToken:String
+    var refreshToken:String
     var scope:String
-    var token_type:String
+    var tokenType:String
     var state:String
     var error:String
     var errorDescription:String
     
     public override init(){
-        access_token = ""
-        expires_in = 0
-        id_token = ""
+        accessToken = ""
+        expiresIn = 0
+        idToken = ""
         scope = ""
-        token_type = ""
-        refresh_token = ""
+        tokenType = ""
+        refreshToken = ""
         state = ""
         error = ""
         errorDescription = ""
     }
     
     public func getAccessToken() -> String{
-        return access_token
+        return accessToken
     }
     
     public func getExpiresIn() -> Int{
-        return expires_in
+        return expiresIn
     }
     
     public func getIdToken() -> String{
-        return id_token
+        return idToken
     }
     
     public func getRefreshToken() -> String{
-        return refresh_token
+        return refreshToken
+    }
+    
+    public func getScope() -> String{
+        return scope
+    }
+    
+    public func getTokenType() -> String{
+        return tokenType
+    }
+    
+    public func getState() -> String{
+        return state
     }
     
     public func getError() -> String{

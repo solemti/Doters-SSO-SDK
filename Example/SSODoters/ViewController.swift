@@ -11,15 +11,12 @@ import SSODoters
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var labelLogin: UILabel!
-    @IBOutlet weak var lblIntrospection: UILabel!
-    @IBOutlet weak var lblUserInfo: UILabel!
-    @IBOutlet weak var lblLogOut: UILabel!
+    @IBOutlet weak var lblData: UILabel!
     var loginDataGlobal = LoginData()
-    @IBOutlet weak var lblRefresh: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        lblData.font = UIFont.systemFont(ofSize: 12)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,9 +34,9 @@ class ViewController: UIViewController {
         
         auth.signIn { data, error in
             self.loginDataGlobal = data
-            self.labelLogin.numberOfLines = 0
-            self.labelLogin.textAlignment = .left
-            self.labelLogin.text = "Acces Token: \(data.getAccessToken())\n Refresh: \(data.getRefreshToken())"
+            self.lblData.numberOfLines = 0
+            self.lblData.textAlignment = .left
+            self.lblData.text = "Login.-\n Acces Token: \(data.getAccessToken())\n Refresh: \(data.getRefreshToken())\n Id Token: \(data.getIdToken())\n Expires In: \(data.getExpiresIn())"
         }
     }
     @IBAction func logOut(_ sender: Any) {
@@ -51,9 +48,9 @@ class ViewController: UIViewController {
                 
             auth.logOut { dato, error in
                 
-                self.lblLogOut.numberOfLines = 0
-                self.lblLogOut.textAlignment = .left
-                self.lblLogOut.text = dato
+                self.lblData.numberOfLines = 0
+                self.lblData.textAlignment = .left
+                self.lblData.text = dato
             }
     }
     @IBAction func refresh(_ sender: Any) {
@@ -63,13 +60,13 @@ class ViewController: UIViewController {
             auth.setClientId(clientId: "viva-web")
             auth.setClientSecret(clientSecret: "GlMTbnwjRA")
                 
-            auth.RefreshToken(token: loginDataGlobal.getRefreshToken(), completion: { data, error in
+            auth.refreshToken(token: loginDataGlobal.getRefreshToken(), completion: { data, error in
                 if(data.getError().isEmpty){
-                    self.lblRefresh.numberOfLines = 0
-                    self.lblRefresh.textAlignment = .left
-                    self.lblRefresh.text = "Acces Token: \(data.getAccessToken())\n Refresh: \(data.getRefreshToken())"
+                    self.lblData.numberOfLines = 0
+                    self.lblData.textAlignment = .left
+                    self.lblData.text = "Refresh.-\n Acces Token: \(data.getAccessToken())\n Refresh: \(data.getRefreshToken())\n Id Token: \(data.getIdToken())\n Refresh: \(data.getRefreshToken())\n Expires In: \(data.getExpiresIn())"
                 }else{
-                    self.lblRefresh.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
+                    self.lblData.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
                 }
             
             })
@@ -81,13 +78,13 @@ class ViewController: UIViewController {
         auth.setClientId(clientId: "viva-web")
         auth.setClientSecret(clientSecret: "GlMTbnwjRA")
             
-        auth.TokenIntrospection(access_token: loginDataGlobal.getAccessToken(), completion: { data, error in
-            self.lblIntrospection.numberOfLines = 0
-            self.lblIntrospection.textAlignment = .left
+        auth.tokenIntrospection(access_token: loginDataGlobal.getAccessToken(), completion: { data, error in
+            self.lblData.numberOfLines = 0
+            self.lblData.textAlignment = .left
             if(data.getError().isEmpty){
-                self.lblIntrospection.text = "Active: \(data.getActive())\n Client ID: \(data.getClient_id())\n User: \(data.getSub().getUser())"
+                self.lblData.text = "Introspection.-\n Active: \(data.getActive())\n Client ID: \(data.getClientId())\n Iat: \(data.getIat())\n exp: \(data.getExp())\n Iss: \(data.getIss())\n iat: \(data.getIat())\n scope: \(data.getScope())\n User: \(data.getSub().getUser())\n AccountId: \(data.getSub().getAccountId())\n tokenType: \(data.getTokenType())"
             }else{
-                self.lblIntrospection.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
+                self.lblData.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
             }
             
         })
@@ -98,11 +95,11 @@ class ViewController: UIViewController {
         auth.setClientId(clientId: "viva-web")
         auth.setClientSecret(clientSecret: "GlMTbnwjRA")
             
-        auth.UserInfo(access_token: loginDataGlobal.getAccessToken(), completion: { data, error in
+        auth.userInfo(access_token: loginDataGlobal.getAccessToken(), completion: { data, error in
             if(data.getError().isEmpty){
-                self.lblUserInfo.text = "Email: \(data.getEmail())\n First: \(data.getFirst())\n Last: \(data.getLast())"
+                self.lblData.text = "User info.-\n First: \(data.getFirst())\n last: \(data.getLast())\n CustomerId: \(data.getCustomerId())\n Email: \(data.getEmail())\n Title: \(data.getTitle())"
             }else{
-                self.lblUserInfo.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
+                self.lblData.text = "Error: \(data.getError())\n Error Description: \(data.getErrorDescription())"
             }
             
         })
