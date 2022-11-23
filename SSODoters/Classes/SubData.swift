@@ -7,18 +7,18 @@
 
 import Foundation
 
-public class SubIntrospection: NSObject{
+public class SubData: NSObject{
     
-    var accountId:String
+    var customerId:String
     var user:String
     
     public override init(){
-        accountId = ""
+        customerId = ""
         user = ""
     }
     
-    public func getAccountId() -> String{
-        return accountId
+    public func getCustomerId() -> String{
+        return customerId
     }
     
     public func getUser() -> String{

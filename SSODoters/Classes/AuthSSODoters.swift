@@ -20,12 +20,12 @@ public class AuthSSODoters : NSObject{
     var state=""
     var loginData: LoginData
     var userInfo: UserInfoData
-    var introspection: Introspection
+    var introspection: IntrospectionData
     
     public override init() {
         loginData = LoginData()
         userInfo = UserInfoData()
-        introspection = Introspection()
+        introspection = IntrospectionData()
     }
     
     
@@ -121,9 +121,9 @@ public class AuthSSODoters : NSObject{
         
     }
     
-    public func tokenIntrospection(access_token:String, completion: @escaping (Introspection, Error?) -> ()) {
+    public func tokenIntrospection(accessToken:String, completion: @escaping (IntrospectionData, Error?) -> ()) {
         
-        if(access_token.isEmpty){
+        if(accessToken.isEmpty){
             introspection.errorDescription=" missing required parameter 'access_token' "
             introspection.error="invalid_request"
             completion(self.introspection,nil)
@@ -133,7 +133,7 @@ public class AuthSSODoters : NSObject{
                                                "Content-Type": "application/x-www-form-urlencoded"]
         var requestBody=URLComponents()
         
-        requestBody.queryItems = [URLQueryItem(name: "token", value: access_token),
+        requestBody.queryItems = [URLQueryItem(name: "token", value: accessToken),
                                   URLQueryItem(name: "token_type_hint", value: "access_token")]
         
         var request = URLRequest(url: URL(string:"\(APIurl)/token/introspection")!)
@@ -141,7 +141,7 @@ public class AuthSSODoters : NSObject{
         request.allHTTPHeaderFields=requestHeaders
         request.httpBody=requestBody.query?.data(using: .utf8)
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            self.introspection = Introspection()
+            self.introspection = IntrospectionData()
             self.getTokenIntrospection(data: data)
             completion(self.introspection ,error)
 
@@ -149,8 +149,8 @@ public class AuthSSODoters : NSObject{
         
     }
     
-    public func userInfo(access_token:String, completion: @escaping (UserInfoData, Error?) -> ()) {
-        if(access_token.isEmpty){
+    public func userInfo(accessToken:String, completion: @escaping (UserInfoData, Error?) -> ()) {
+        if(accessToken.isEmpty){
             userInfo.errorDescription=" missing required parameter 'access_token' "
             userInfo.error="invalid_request"
             completion(self.userInfo,nil)
@@ -158,7 +158,7 @@ public class AuthSSODoters : NSObject{
         }
         var request = URLRequest(url: URL(string:"\(APIurl)/user")!)
         request.httpMethod="GET"
-        request.setValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -229,6 +229,10 @@ public class AuthSSODoters : NSObject{
                     loginData.tokenType=tokenType
                 }
                 
+                if let id_token = json["id_token"] as? String {
+                    loginData.idToken=id_token
+                }
+                
                 if let refresh_token = json["refresh_token"] as? String {
                     loginData.refreshToken=refresh_token
                 }
@@ -282,7 +286,7 @@ public class AuthSSODoters : NSObject{
                     if let jsonSub =  try JSONSerialization.jsonObject(with: subData, options: []) as? [String: Any]{
                     
                         if let accountId = jsonSub["accountId"] as? String {
-                            introspection.sub.accountId=accountId
+                            introspection.sub.customerId=accountId
                         }
                         
                         if let user = jsonSub["user"] as? String {

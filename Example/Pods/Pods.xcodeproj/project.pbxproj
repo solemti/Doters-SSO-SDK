@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BD55164F11648D44EDF0154F4352E68 /* Pods-SSODoters_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 60436020FDB4DBE47AA6F07340E7441B /* Pods-SSODoters_Example-dummy.m */; };
 		3444B1848E13CC5B6FDA60175FA5645D /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69472B09797FA5B951D069DAD9C7AFB8 /* LoginData.swift */; };
-		393979986CA4CA43121043D351585853 /* Introspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A659D4D7C0D9D29E29D03DECD21C07 /* Introspection.swift */; };
+		393979986CA4CA43121043D351585853 /* IntrospectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A659D4D7C0D9D29E29D03DECD21C07 /* IntrospectionData.swift */; };
 		3FA39F12D5594BE80C5BE07FCBD915E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		57A9281A51AB4F43D214C5C7B1634604 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA26A08001FE3E4E8D825B5E743D3227 /* UserInfoData.swift */; };
 		5F712E9CC720106CB54ABA7407CB3763 /* AuthSSODoters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D726E3E574855A57042E365CD539D70 /* AuthSSODoters.swift */; };
@@ -19,7 +19,7 @@
 		B28BA993E5B652F1D4C55F5A83B35321 /* Pods-SSODoters_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B62B382E066AFC6F71C70B077FC7ECD /* Pods-SSODoters_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2EF2C31B07D228C5B222BDD6DC6BEC4 /* Pods-SSODoters_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C190D705FB3BE57329D9A7B0955C212 /* Pods-SSODoters_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B32AF14899070A52077F24F50D425BDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		C4EC7CA239D25D33E89E2BDBB03E4F81 /* SubIntrospection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubIntrospection.swift */; };
+		C4EC7CA239D25D33E89E2BDBB03E4F81 /* SubData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubData.swift */; };
 		DD87FD9F57F311A9F382B3EBBE32F199 /* SSODoters-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9918DEDDB1B45E189D98178AD87554 /* SSODoters-dummy.m */; };
 		E7C71DDED9F7A2FA5777B7D42D1EFC30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +45,7 @@
 		029BE219E102D34CC7FCA52538498A8E /* Pods-SSODoters_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SSODoters_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		06A5DA95E06C5D0FE7BD5FD9386A13A0 /* Pods-SSODoters_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SSODoters_Tests-Info.plist"; sourceTree = "<group>"; };
 		0AA8ACFB410B2CC90A8773CB534EAE2A /* Pods-SSODoters_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SSODoters_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubIntrospection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubIntrospection.swift; path = SSODoters/Classes/SubIntrospection.swift; sourceTree = "<group>"; };
+		0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubData.swift; path = SSODoters/Classes/SubData.swift; sourceTree = "<group>"; };
 		1B62B382E066AFC6F71C70B077FC7ECD /* Pods-SSODoters_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SSODoters_Example-umbrella.h"; sourceTree = "<group>"; };
 		2BF1CF5A571688D6D8ADFCD0D9379DD6 /* Pods-SSODoters_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SSODoters_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		306DF6B81F023C280EB32E9AED542930 /* SSODoters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSODoters.debug.xcconfig; sourceTree = "<group>"; };
@@ -63,12 +63,12 @@
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7C190D705FB3BE57329D9A7B0955C212 /* Pods-SSODoters_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SSODoters_Tests-umbrella.h"; sourceTree = "<group>"; };
 		93BC306E7BCE15B5F2110B0C4E2CD41D /* Pods-SSODoters_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SSODoters_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AAD41FF41BB72D6CF96BED6873CE04FE /* SSODoters.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SSODoters.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AAD41FF41BB72D6CF96BED6873CE04FE /* SSODoters.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SSODoters.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AADF5D65E41CD2A1D9B0465E3728C441 /* Pods-SSODoters_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SSODoters_Tests-dummy.m"; sourceTree = "<group>"; };
 		AE9A44457150B71DD05F479634527898 /* Pods-SSODoters_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SSODoters_Example-Info.plist"; sourceTree = "<group>"; };
 		BED14EA27BCA0021F9CD94B372CC52A6 /* Pods-SSODoters_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SSODoters_Tests.modulemap"; sourceTree = "<group>"; };
-		BF264CF72BBFA9D476F6340D1EDFBFDB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		BF264CF72BBFA9D476F6340D1EDFBFDB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CA26A08001FE3E4E8D825B5E743D3227 /* UserInfoData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserInfoData.swift; path = SSODoters/Classes/UserInfoData.swift; sourceTree = "<group>"; };
 		CD4B70894729F87E7BA7CDDF78B003C4 /* SSODoters.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SSODoters.modulemap; sourceTree = "<group>"; };
 		CEA4FA2330E30D4A5B13859A670B413A /* Pods-SSODoters_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SSODoters_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -76,8 +76,8 @@
 		DC9918DEDDB1B45E189D98178AD87554 /* SSODoters-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SSODoters-dummy.m"; sourceTree = "<group>"; };
 		DD041E1B9E2FF962B2FA86FF0225BCA7 /* Pods-SSODoters_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SSODoters_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E0562BDD7F76B199A8F013BEF2BDB35D /* Pods-SSODoters_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SSODoters_Example"; path = Pods_SSODoters_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E646985C9BBBAECEF534344AF36E72A6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		F5A659D4D7C0D9D29E29D03DECD21C07 /* Introspection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Introspection.swift; path = SSODoters/Classes/Introspection.swift; sourceTree = "<group>"; };
+		E646985C9BBBAECEF534344AF36E72A6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F5A659D4D7C0D9D29E29D03DECD21C07 /* IntrospectionData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntrospectionData.swift; path = SSODoters/Classes/IntrospectionData.swift; sourceTree = "<group>"; };
 		FCFA09D9E6B47DE76B9344AF1C7A0702 /* Pods-SSODoters_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SSODoters_Example-frameworks.sh"; sourceTree = "<group>"; };
 		FF6F726CC1A8B9D566AFD44E6AA6EBAD /* Pods-SSODoters_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SSODoters_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,10 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				6D726E3E574855A57042E365CD539D70 /* AuthSSODoters.swift */,
-				F5A659D4D7C0D9D29E29D03DECD21C07 /* Introspection.swift */,
+				F5A659D4D7C0D9D29E29D03DECD21C07 /* IntrospectionData.swift */,
 				69472B09797FA5B951D069DAD9C7AFB8 /* LoginData.swift */,
 				3E0F7BC6A7BC76974A76F0CA6C1FC5A0 /* ShimViewController.swift */,
-				0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubIntrospection.swift */,
+				0DE0A1F71FDB5AA29C6E7B499894EDF1 /* SubData.swift */,
 				CA26A08001FE3E4E8D825B5E743D3227 /* UserInfoData.swift */,
 				86A7F26CA3C42151DDB004B6DD5C5D25 /* Pod */,
 				5361452F6EE72CCF1B3EAE5A9338BE4D /* Support Files */,
@@ -399,11 +399,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F712E9CC720106CB54ABA7407CB3763 /* AuthSSODoters.swift in Sources */,
-				393979986CA4CA43121043D351585853 /* Introspection.swift in Sources */,
+				393979986CA4CA43121043D351585853 /* IntrospectionData.swift in Sources */,
 				3444B1848E13CC5B6FDA60175FA5645D /* LoginData.swift in Sources */,
 				5F87E747F7FC0A53C5032349B3019B0D /* ShimViewController.swift in Sources */,
 				DD87FD9F57F311A9F382B3EBBE32F199 /* SSODoters-dummy.m in Sources */,
-				C4EC7CA239D25D33E89E2BDBB03E4F81 /* SubIntrospection.swift in Sources */,
+				C4EC7CA239D25D33E89E2BDBB03E4F81 /* SubData.swift in Sources */,
 				57A9281A51AB4F43D214C5C7B1634604 /* UserInfoData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,8 +649,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

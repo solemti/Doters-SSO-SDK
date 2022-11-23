@@ -7,10 +7,10 @@
 
 import Foundation
 
-public class Introspection: NSObject{
+public class IntrospectionData: NSObject{
     
     var active:Bool
-    var sub:SubIntrospection
+    var sub:SubData
     var clientId:String
     var exp:Int
     var iat:Int
@@ -22,7 +22,7 @@ public class Introspection: NSObject{
     
     public override init(){
         active = false
-        sub = SubIntrospection()
+        sub = SubData()
         clientId = ""
         exp = 0
         iat = 0
@@ -45,7 +45,7 @@ public class Introspection: NSObject{
         return exp
     }
     
-    public func getSub() -> SubIntrospection{
+    public func getSub() -> SubData{
         return sub
     }
     
