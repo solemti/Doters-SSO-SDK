@@ -1,0 +1,16 @@
+PODS:
+  - SSODoters (1.3.0)
+
+DEPENDENCIES:
+  - SSODoters (from `../`)
+
+EXTERNAL SOURCES:
+  SSODoters:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SSODoters: 9a9d58c33d675f81933ded0ba5e9b2e25973c8eb
+
+PODFILE CHECKSUM: c3417661dfd582ffbcbc0e7c0e0a011777e3cbae
+
+COCOAPODS: 1.12.1

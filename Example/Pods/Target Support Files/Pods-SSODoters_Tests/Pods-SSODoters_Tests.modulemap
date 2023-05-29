@@ -1,0 +1,6 @@
+framework module Pods_SSODoters_Tests {
+  umbrella header "Pods-SSODoters_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
