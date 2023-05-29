@@ -258,7 +258,7 @@ public class AuthSSODoters : NSObject{
                 }
                 
                 if let client_id = json["client_id"] as? String {
-                    introspection.clientId=clientId
+                    introspection.clientId=client_id
                 }
                 
                 if let exp = json["exp"] as? Int {
