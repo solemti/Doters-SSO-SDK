@@ -60,7 +60,7 @@ public class AuthSSODoters : NSObject{
     public func signIn(completion: @escaping (LoginData, Error?) -> ()) {
         let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)";
         guard let urlAuth = URL(string: authUrlString) else { return }
-
+        
         let session = ASWebAuthenticationSession(
             url: urlAuth,
             callbackURLScheme: scheme,
@@ -77,7 +77,7 @@ public class AuthSSODoters : NSObject{
 
     public func logOut(completion: @escaping (String, Error?) -> ()) {
         
-        let authUrlString = "\(APIurl)/logout?post_logout_redirect_uri=\(scheme)://logout&client_id=\(clientId)";
+        let authUrlString = "\(url)/logout?post_logout_redirect_uri=\(scheme)://logout&client_id=\(clientId)";
         guard let urlAuth = URL(string: authUrlString) else { return }
        
         let session = ASWebAuthenticationSession(
@@ -103,6 +103,7 @@ public class AuthSSODoters : NSObject{
             return
         }
         let requestHeaders: [String:String] = ["Authorization": "Basic \(authorization())",
+            "X-Channel": "ios",
             "Content-Type": "application/x-www-form-urlencoded"]
         var requestBody=URLComponents()
         
@@ -130,6 +131,7 @@ public class AuthSSODoters : NSObject{
             return
         }
         let requestHeaders: [String:String] = ["Authorization": "Basic \(authorization())",
+                                               "X-Channel": "ios",
                                                "Content-Type": "application/x-www-form-urlencoded"]
         var requestBody=URLComponents()
         
@@ -156,10 +158,14 @@ public class AuthSSODoters : NSObject{
             completion(self.userInfo,nil)
             return
         }
+        
+        let requestHeaders: [String:String] = ["Authorization": "Bearer \(accessToken)",
+                                               "X-Channel": "ios",
+                                               "Content-Type": "application/json"]
+        
         var request = URLRequest(url: URL(string:"\(APIurl)/user")!)
         request.httpMethod="GET"
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields=requestHeaders
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
             self.userInfo = UserInfoData()
