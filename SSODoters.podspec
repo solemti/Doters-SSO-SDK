@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/solemti/Doters-SSO-SDK'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Alejandro' => 'alejandrosoto@solemti.com' }
+  s.author           = { 'Alejandro' => 'alejandrosoto@solemti.mx' }
   s.source           = { :git => 'https://github.com/solemti/Doters-SSO-SDK.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '13.0'
