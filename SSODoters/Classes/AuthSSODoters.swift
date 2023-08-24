@@ -184,6 +184,9 @@ public class AuthSSODoters : NSObject{
     }
     
     public func getLogin(data:String){
+        if(URLComponents(string: (data))!.queryItems?.isEmpty ?? true ){
+            return
+        }
         
         if let access_token = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "access_token" }).first {
             loginData.accessToken = access_token.value!
