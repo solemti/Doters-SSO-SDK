@@ -74,7 +74,7 @@ public class AuthSSODoters : NSObject{
         self.start(session: session)
         
     }
-    public func signUp(completion: @escaping (LoginData, Error?) -> ()) {
+    public func signUp() {
         let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&go_to_page=signup&state=\(state)";
         guard let urlAuth = URL(string: authUrlString) else { return }
         
@@ -82,14 +82,24 @@ public class AuthSSODoters : NSObject{
             url: urlAuth,
             callbackURLScheme: scheme,
             completionHandler: { callback, error in
-                guard error == nil, let successURL = callback else { return }
-                self.loginData = LoginData()
-                self.getLogin(data: successURL.absoluteString)
-                completion(self.loginData,error)
-        })
+            })
         
         self.start(session: session)
         
+    }
+    
+    public func editProfile() {
+        let authUrlString = "\(url)/profile/edit?redirectUri=\(scheme)://login";
+        print("authUrlString: \(authUrlString)")
+        guard let urlAuth = URL(string: authUrlString) else { return }
+        
+        let session = ASWebAuthenticationSession(
+            url: urlAuth,
+            callbackURLScheme: scheme,
+            completionHandler: { callback, error in
+            })
+        
+        self.start(session: session)
     }
 
     public func logOut(completion: @escaping (String, Error?) -> ()) {
