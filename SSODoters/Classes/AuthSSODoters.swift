@@ -88,15 +88,16 @@ public class AuthSSODoters : NSObject{
         
     }
     
-    public func editProfile() {
+    public func editProfile(completion: @escaping (String, Error?) -> ()) {
         let authUrlString = "\(url)/profile/edit?redirectUri=\(scheme)://login";
-        print("authUrlString: \(authUrlString)")
+       
         guard let urlAuth = URL(string: authUrlString) else { return }
         
         let session = ASWebAuthenticationSession(
             url: urlAuth,
             callbackURLScheme: scheme,
             completionHandler: { callback, error in
+                completion("Process editProfile finished",error)
             })
         
         self.start(session: session)
