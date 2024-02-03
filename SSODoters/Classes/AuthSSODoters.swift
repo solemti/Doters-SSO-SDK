@@ -21,11 +21,13 @@ public class AuthSSODoters : NSObject{
     var loginData: LoginData
     var userInfo: UserInfoData
     var introspection: IntrospectionData
+    var resultCodeData: ResultCodeData
     
     public override init() {
         loginData = LoginData()
         userInfo = UserInfoData()
         introspection = IntrospectionData()
+        resultCodeData = ResultCodeData()
     }
     
     
@@ -74,6 +76,7 @@ public class AuthSSODoters : NSObject{
         self.start(session: session)
         
     }
+    
     public func signUp() {
         let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&go_to_page=signup&state=\(state)";
         guard let urlAuth = URL(string: authUrlString) else { return }
@@ -116,6 +119,24 @@ public class AuthSSODoters : NSObject{
         })
         
         self.start(session: session)
+    }
+    
+    public func deleteAccount(completion: @escaping (ResultCodeData, Error?) -> ()) {
+        let authUrlString = "\(url)/user/cancel?redirectUri=\(scheme)://cancel&clientId=\(clientId)&clientSecret=\(clientSecret)&originApp=true";
+        guard let urlAuth = URL(string: authUrlString) else { return }
+        
+        let session = ASWebAuthenticationSession(
+            url: urlAuth,
+            callbackURLScheme: scheme,
+            completionHandler: { callback, error in
+                guard error == nil, let successURL = callback else { return }
+                self.resultCodeData = ResultCodeData()
+                self.getResultCode(data: successURL.absoluteString)
+                completion(self.resultCodeData,error)
+        })
+        
+        self.start(session: session)
+        
     }
     
     private func start(session:ASWebAuthenticationSession){
@@ -369,4 +390,15 @@ public class AuthSSODoters : NSObject{
             print("Failed to load: \(error.localizedDescription)")
         }
     }
+    
+    public func getResultCode(data: String) {
+        if(URLComponents(string: (data))!.queryItems?.isEmpty ?? true ){
+            return
+        }
+        
+        if let resultCode = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "resultCode" }).first {
+            resultCodeData.resultCode = resultCode.value!
+        }
+    }
+    
 }
