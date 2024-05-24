@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SSODoters'
-  s.version          = '1.4.5'
+  s.version          = '1.4.6'
   s.summary          = 'Single Sign On Doters.'
   s.swift_versions          = '5.0'
 

@@ -129,7 +129,12 @@ public class AuthSSODoters : NSObject{
             url: urlAuth,
             callbackURLScheme: scheme,
             completionHandler: { callback, error in
-                guard error == nil, let successURL = callback else { return }
+                guard error == nil, let successURL = callback else {
+                    self.resultCodeData = ResultCodeData()
+                    self.resultCodeData.resultCode = "PROCESS_CANCELED"
+                    completion(self.resultCodeData,error)
+                    return
+                }
                 self.resultCodeData = ResultCodeData()
                 self.getResultCode(data: successURL.absoluteString)
                 completion(self.resultCodeData,error)
