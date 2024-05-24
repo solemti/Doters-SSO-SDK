@@ -70,7 +70,16 @@ public class AuthSSODoters : NSObject{
                 guard error == nil, let successURL = callback else { return }
                 self.loginData = LoginData()
                 self.getLogin(data: successURL.absoluteString)
-                completion(self.loginData,error)
+
+                var signInError: Error? = error
+                
+                if !self.loginData.error.isEmpty {
+                    signInError = NSError(domain: "SignInErrorDomain", code: SignInError.unknownError.rawValue, userInfo: [NSLocalizedDescriptionKey: self.loginData.error])
+                }else if(self.loginData.accessToken.isEmpty){
+                    signInError = NSError(domain:  "SignInErrorDomain", code: SignInError.processCanceled.rawValue, userInfo: [NSLocalizedDescriptionKey: SignInError.processCanceled.localizedDescription])
+                }
+               
+               completion(self.loginData, signInError)
         })
         
         self.start(session: session)
@@ -269,7 +278,14 @@ public class AuthSSODoters : NSObject{
         if let refresh_token = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "refresh_token" }).first {
             loginData.refreshToken = refresh_token.value!
         }
-
+        
+        if let error_description = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error_description" }).first {
+            loginData.errorDescription = error_description.value!
+        }
+        
+        if let error = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error" }).first {
+            loginData.error = error.value!
+        }
     }
     
     public func getRefreshToken(data:Data?){
