@@ -87,7 +87,7 @@ public class AuthSSODoters : NSObject{
     }
     
     public func signUp() {
-        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&go_to_page=signup&state=\(state)";
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://signup&go_to_page=signup&state=\(state)";
         guard let urlAuth = URL(string: authUrlString) else { return }
         
         let session = ASWebAuthenticationSession(
@@ -101,7 +101,7 @@ public class AuthSSODoters : NSObject{
     }
     
     public func editProfile(completion: @escaping (String, Error?) -> ()) {
-        let authUrlString = "\(url)/profile/edit?redirectUri=\(scheme)://login";
+        let authUrlString = "\(url)/profile/edit?redirectUri=\(scheme)://edit";
        
         guard let urlAuth = URL(string: authUrlString) else { return }
         
