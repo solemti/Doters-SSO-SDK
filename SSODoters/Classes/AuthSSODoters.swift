@@ -18,16 +18,20 @@ public class AuthSSODoters : NSObject{
     var clientId=""
     var clientSecret=""
     var state=""
+    var flow=""
+    var user=""
     var loginData: LoginData
     var userInfo: UserInfoData
     var introspection: IntrospectionData
     var resultCodeData: ResultCodeData
+    var loginDataSAC: LoginDataSAC
     
     public override init() {
         loginData = LoginData()
         userInfo = UserInfoData()
         introspection = IntrospectionData()
         resultCodeData = ResultCodeData()
+        loginDataSAC = LoginDataSAC()
     }
     
     
@@ -58,6 +62,14 @@ public class AuthSSODoters : NSObject{
     public func setState(state:String){
         self.state = state
     }
+    
+    public func setFlow(flow:String){
+        self.flow = flow
+    }
+    
+    public func setUser(user:String){
+        self.user = user
+    }
 
     public func signIn(completion: @escaping (LoginData, Error?) -> ()) {
         let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)";
@@ -86,8 +98,35 @@ public class AuthSSODoters : NSObject{
         
     }
     
+    public func signInSAC(completion: @escaping (LoginDataSAC, Error?) -> ()) {
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)&flow=\(flow)&user=\(user)";
+        guard let urlAuth = URL(string: authUrlString) else { return }
+        
+        let session = ASWebAuthenticationSession(
+            url: urlAuth,
+            callbackURLScheme: scheme,
+            completionHandler: { callback, error in
+                guard error == nil, let successURL = callback else { return }
+                self.loginDataSAC = LoginDataSAC()
+                self.getLoginSAC(data: successURL.absoluteString)
+
+                var signInError: Error? = error
+                
+                if !self.loginDataSAC.error.isEmpty {
+                    signInError = NSError(domain: "SignInErrorDomain", code: SignInError.unknownError.rawValue, userInfo: [NSLocalizedDescriptionKey: self.loginData.error])
+                }else if(self.loginDataSAC.activationCode.isEmpty){
+                    signInError = NSError(domain:  "SignInErrorDomain", code: SignInError.processCanceled.rawValue, userInfo: [NSLocalizedDescriptionKey: SignInError.processCanceled.localizedDescription])
+                }
+               
+               completion(self.loginDataSAC, signInError)
+        })
+        
+        self.start(session: session)
+        
+    }
+    
     public func signUp() {
-        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://signup&go_to_page=signup&state=\(state)";
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://signup&go_to_page=signup&state=\(state)&flow=\(flow)&user=\(user)";
         guard let urlAuth = URL(string: authUrlString) else { return }
         
         let session = ASWebAuthenticationSession(
@@ -95,6 +134,33 @@ public class AuthSSODoters : NSObject{
             callbackURLScheme: scheme,
             completionHandler: { callback, error in
             })
+        
+        self.start(session: session)
+        
+    }
+    
+    public func signUpSAC(completion: @escaping (LoginDataSAC, Error?) -> ()) {
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://signup&go_to_page=signup&state=\(state)&flow=\(flow)&user=\(user)";
+        guard let urlAuth = URL(string: authUrlString) else { return }
+        
+        let session = ASWebAuthenticationSession(
+            url: urlAuth,
+            callbackURLScheme: scheme,
+            completionHandler:  { callback, error in
+                guard error == nil, let successURL = callback else { return }
+                self.loginDataSAC = LoginDataSAC()
+                self.getLoginSAC(data: successURL.absoluteString)
+
+                var signInError: Error? = error
+                
+                if !self.loginDataSAC.error.isEmpty {
+                    signInError = NSError(domain: "SignInErrorDomain", code: SignInError.unknownError.rawValue, userInfo: [NSLocalizedDescriptionKey: self.loginData.error])
+                }else if(self.loginDataSAC.activationCode.isEmpty){
+                    signInError = NSError(domain:  "SignInErrorDomain", code: SignInError.processCanceled.rawValue, userInfo: [NSLocalizedDescriptionKey: SignInError.processCanceled.localizedDescription])
+                }
+               
+               completion(self.loginDataSAC, signInError)
+        })
         
         self.start(session: session)
         
@@ -285,6 +351,44 @@ public class AuthSSODoters : NSObject{
         
         if let error = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error" }).first {
             loginData.error = error.value!
+        }
+    }
+    
+    public func getLoginSAC(data:String){
+        if(URLComponents(string: (data))!.queryItems?.isEmpty ?? true ){
+            return
+        }
+        
+        if let activationCode = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "activation_code" }).first {
+            loginDataSAC.activationCode = activationCode.value!
+        }
+        
+        if let expires_in = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "expires_in" }).first {
+            loginDataSAC.expiresIn =  Int(expires_in.value!) ?? 0
+        }
+        
+        if let flow = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "flow" }).first {
+            loginDataSAC.flow = flow.value!
+        }
+        
+        if let sub = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "sub" }).first {
+            loginDataSAC.sub = sub.value!
+        }
+        
+        if let token_type = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "token_type" }).first {
+            loginDataSAC.tokenType = token_type.value!
+        }
+        
+        if let state = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "state" }).first {
+            loginDataSAC.state = state.value!
+        }
+        
+        if let error_description = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error_description" }).first {
+            loginDataSAC.errorDescription = error_description.value!
+        }
+        
+        if let error = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error" }).first {
+            loginDataSAC.error = error.value!
         }
     }
     
