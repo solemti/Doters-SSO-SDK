@@ -383,6 +383,10 @@ public class AuthSSODoters : NSObject{
             loginDataSAC.state = state.value!
         }
         
+        if let activationCodeSource = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "activation_code_source" }).first {
+            loginDataSAC.activationCodeSource = activationCodeSource.value!
+        }
+        
         if let error_description = URLComponents(string: (data))!.queryItems!.filter({ $0.name == "error_description" }).first {
             loginDataSAC.errorDescription = error_description.value!
         }
