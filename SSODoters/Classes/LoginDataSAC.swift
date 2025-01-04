@@ -15,6 +15,7 @@ public class LoginDataSAC: NSObject{
     var sub:String
     var tokenType:String
     var state:String
+    var activationCodeSource:String
     var error:String
     var errorDescription:String
     
@@ -25,6 +26,7 @@ public class LoginDataSAC: NSObject{
         sub = ""
         tokenType = ""
         state = ""
+        activationCodeSource = ""
         error = ""
         errorDescription = ""
     }
@@ -51,6 +53,10 @@ public class LoginDataSAC: NSObject{
     
     public func getState() -> String{
         return state
+    }
+    
+    public func getActivationCodeSource() -> String{
+        return activationCodeSource
     }
     
     public func getError() -> String{
