@@ -20,6 +20,7 @@ public class AuthSSODoters : NSObject{
     var state=""
     var flow=""
     var user=""
+    var extendedToken=false
     var loginData: LoginData
     var userInfo: UserInfoData
     var introspection: IntrospectionData
@@ -70,9 +71,13 @@ public class AuthSSODoters : NSObject{
     public func setUser(user:String){
         self.user = user
     }
+    
+    public func setExtendedToken(extendedToken:Bool){
+        self.extendedToken = extendedToken
+    }
 
     public func signIn(completion: @escaping (LoginData, Error?) -> ()) {
-        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)";
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)&extended_token=\(extendedToken)";
         guard let urlAuth = URL(string: authUrlString) else { return }
         
         let session = ASWebAuthenticationSession(
@@ -99,7 +104,7 @@ public class AuthSSODoters : NSObject{
     }
     
     public func signInSAC(completion: @escaping (LoginDataSAC, Error?) -> ()) {
-        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)&flow=\(flow)&user=\(user)";
+        let authUrlString = "\(url)?clientId=\(clientId)&clientSecret=\(clientSecret)&language=\(language)&redirectUri=\(scheme)://login&state=\(state)&flow=\(flow)&user=\(user)&extended_token=\(extendedToken)";
         guard let urlAuth = URL(string: authUrlString) else { return }
         
         let session = ASWebAuthenticationSession(
